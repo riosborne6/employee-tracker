@@ -1,5 +1,6 @@
 const mysql = require('mysql2');
-const inquirer = require('inquirer')
+const inquirer = require('inquirer');
+const { V4MAPPED } = require('node:dns');
 
 // Connect to database
 const db = mysql.createConnection(
@@ -25,13 +26,28 @@ function menu() {
         if (answers.action === "add a department") {
             departmento();
         }
+        if (answers.action === "view all departments") {
+            vialdep();
+        }
+        if (answers.action === "view all employees") {
+            vialemp();
+        }
+        if (answers.action === "add a role") {
+            addarole();
+        }
+        if (answers.action === "view all roles") {
+            vialrole();
+        }
+        if (answers.action === "add an employee") {
+            addemp();
+        }
     });
 }
 
 menu();
 
 function departmento() {
-    db.query(`INSERT INTO Department (name) VALUES(?)`, [], (err, result) => {
+    db.query(`INSERT INTO Department (name) VALUES?`, [], (err, result) => {
         if (err) {
             console.log(err);
         }

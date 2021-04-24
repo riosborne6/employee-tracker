@@ -1,6 +1,5 @@
 const mysql = require('mysql2');
 const inquirer = require('inquirer');
-const { V4MAPPED } = require('node:dns');
 
 // Connect to database
 const db = mysql.createConnection(
@@ -47,11 +46,16 @@ function menu() {
 menu();
 
 function departmento() {
-    db.query(`INSERT INTO Department (name) VALUES?`, [], (err, result) => {
+    inquirer.prompt({
+        type: "input",
+        name: "dept",
+        message: "What is the name of the new department",})
+.then(({dept}) => {
+    db.query(`INSERT INTO Department (name) VALUES(?)`, [dept], (err, result) => {
         if (err) {
             console.log(err);
         }
         console.log(result);
     });
+})
 }
-

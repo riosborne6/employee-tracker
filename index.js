@@ -57,5 +57,15 @@ function departmento() {
         }
         console.log(result);
     });
+    menu();
 })
+}
+
+function vialdep() {
+    db.query(`SELECT * FROM Department`, (err, result) => {
+        if (err) {
+            console.log(err);
+        }
+        console.log(result);
+    });
 }

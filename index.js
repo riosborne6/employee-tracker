@@ -60,9 +60,8 @@ function departmento() {
                 if (err) {
                     console.log(err);
                 }
-                console.log(result);
+                menu();
             });
-            menu();
         })
 }
 
@@ -74,7 +73,6 @@ function vialdep() {
         console.table(result);
         menu();
     });
-
 }
 
 
@@ -178,32 +176,18 @@ function upemp() {
     })
 }
 
-// function addemp() {
-//     inquirer.prompt([
-//         {
-//             type: "input",
-//             name: "addRole",
-//             message: "What is the role?",
-//         },
-//         {
-//             type: "input",
-//             name: "addSalary",
-//             message: "What is the salary?",
-//         },
-//         {
-//             type: "input",
-//             name: "addDepartment_ID",
-//             // choices: []
-//             message: "What is the department ID?",
-//         }])
-//         .then(({ addRole, addSalary, addDepartment_ID }) => {
-//             console.log(addRole, addSalary, addDepartment_ID)
-//             db.query(`INSERT INTO Role (title, salary, department_id) VALUES(?,?,?)`, [addRole, addSalary, addDepartment_ID], (err, result) => {
-//                 if (err) {
-//                     console.log(err);
-//                 }
-//                 vialrole();
-//             });
-//             menu();
-//         })
-// }
+function addemp() {
+    inquirer.prompt({
+        type: "input",
+        name: "emp",
+        message: "What is the name of the new employee",
+    })
+        .then(({ emp }) => {
+            db.query(`INSERT INTO Employee (first_name, last_name) VALUES(?,?)`, [emp], (err, result) => {
+                if (err) {
+                    console.log(err);
+                }
+                menu();
+            });
+        })
+}

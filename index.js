@@ -183,7 +183,7 @@ function addemp() {
         message: "What is the name of the new employee",
     })
         .then(({ emp }) => {
-            db.query(`INSERT INTO Employee (first_name, last_name) VALUES(?,?)`, [emp], (err, result) => {
+            db.query(`INSERT INTO Employee (first_name, last_name) VALUES (?, ?)`, [emp], (err, result) => {
                 if (err) {
                     console.log(err);
                 }
